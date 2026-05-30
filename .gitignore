@@ -1,0 +1,23 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.so
+
+# Test cache
+.pytest_cache/
+
+# Environment variables
+.env
+
+# User uploads
+media/
+
+# Collected static files (production)
+staticfiles/
+
+# IDE files
+.vscode/
+.idea/

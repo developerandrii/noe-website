@@ -1,10 +1,11 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 
-from .models import Deck
+from .models import Deck, Card
 
 
 class DeckListView(LoginRequiredMixin, ListView):
@@ -37,6 +38,28 @@ class DeckDetailView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
         return Deck.objects.filter(owner=self.request.user)
 
+
+
+class CreateCardView(LoginRequiredMixin, CreateView):
+    model = Card
+    fields = ["front", "back"]
+    template_name = "flashcards/card_form.html"
+
+    def form_valid(self, form):
+        deck = get_object_or_404(
+            Deck,
+            pk=self.kwargs["deck_pk"],
+            owner=self.request.user,
+        )
+
+        form.instance.deck = deck
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy(
+            "deck-detail",
+            kwargs={"pk": self.object.deck.pk},
+        )
 
 
 

@@ -1,0 +1,13 @@
+<h1>{{ deck.name }}</h1>
+
+<p>Created: {{ deck.created_at }}</p>
+
+<h2>Cards</h2>
+
+<ul>
+    {% for card in deck.cards.all %}
+        <li>{{ card.front }}</li>
+    {% empty %}
+        <li>No cards yet.</li>
+    {% endfor %}
+</ul>

@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 
 from .models import Deck
@@ -26,6 +26,16 @@ class CreateDeckView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super().form_valid(form)
+    
+
+
+class DeckDetailView(LoginRequiredMixin, DetailView):
+    model = Deck
+    template_name = "flashcards/deck_detail.html"
+    context_object_name = "deck"
+
+    def get_queryset(self):
+        return Deck.objects.filter(owner=self.request.user)
 
 
 

@@ -3,7 +3,9 @@
 {% if decks %}
 <ul>
     {% for deck in decks %}
-        <li>{{ deck.name }}</li>
+        <li>
+            <a href="{% url 'deck-detail' deck.pk %}">{{ deck.name }}</a>
+        </li>
     {% endfor %}
 </ul>
 {% else %}

@@ -17,6 +17,19 @@ class DeckListView(LoginRequiredMixin, ListView):
 
 
 
+class CreateDeckView(LoginRequiredMixin, CreateView):
+    model = Deck
+    fields = ['name']
+    template_name = "flashcards/deck_form.html"
+    success_url = reverse_lazy("deck-list")
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+
+
+
+
 class RegisterView(CreateView):
     form_class = UserCreationForm
     template_name = "registration/register.html"

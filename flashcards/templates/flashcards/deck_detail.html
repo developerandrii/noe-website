@@ -2,6 +2,8 @@
 
 <p>Created: {{ deck.created_at }}</p>
 
+<a href="{% url 'card-create' deck.pk %}">Add Card</a>
+
 <h2>Cards</h2>
 
 <ul>

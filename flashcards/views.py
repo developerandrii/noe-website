@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
 from .models import Deck, Card
 
@@ -61,6 +61,16 @@ class CreateCardView(LoginRequiredMixin, CreateView):
             kwargs={"pk": self.object.deck.pk},
         )
 
+
+
+class UpdateDeckView(LoginRequiredMixin, UpdateView):
+    model = Deck
+    fields = ["name"]
+    template_name = "flashcards/deck_form.html"
+    success_url = reverse_lazy("deck-list")
+
+    def get_queryset(self):
+        return Deck.objects.filter(owner=self.request.user)
 
 
 class RegisterView(CreateView):

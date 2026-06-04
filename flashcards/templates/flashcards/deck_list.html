@@ -1,5 +1,7 @@
 <h1>My Decks</h1>
 
+<a href="{% url 'deck-create' %}"> Add deck</a>
+
 {% if decks %}
 <ul>
     {% for deck in decks %}

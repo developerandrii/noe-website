@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .models import Deck, Card
 
@@ -71,6 +71,17 @@ class UpdateDeckView(LoginRequiredMixin, UpdateView):
 
     def get_queryset(self):
         return Deck.objects.filter(owner=self.request.user)
+
+
+
+class DeleteDeckView(LoginRequiredMixin, DeleteView):
+    model = Deck
+    template_name = "flashcards/deck_confirm_delete.html"
+    success_url = reverse_lazy("deck-list")
+
+    def get_queryset(self):
+        return Deck.objects.filter(owner=self.request.user)
+
 
 
 class RegisterView(CreateView):

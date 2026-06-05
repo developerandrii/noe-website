@@ -8,3 +8,9 @@
 body {
     background-color: hsl(0, 0%, 97%);
 }
+
+
+.deck-grid {
+    display: grid;
+    gap: 1rem;
+}

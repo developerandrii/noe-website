@@ -99,6 +99,22 @@ class CardUpdateView(LoginRequiredMixin, UpdateView):
         )
 
 
+
+class CardDeleteView(LoginRequiredMixin, DeleteView):
+    model = Card
+    template_name = "flashcards/card_confirm_delete.html"
+
+    def get_queryset(self):
+        return Card.objects.filter(deck__owner=self.request.user)
+
+    def get_success_url(self):
+        return reverse_lazy(
+            "deck-detail",
+            kwargs={"pk": self.object.deck.pk},
+        )
+
+
+
 class RegisterView(CreateView):
     form_class = UserCreationForm
     template_name = "registration/register.html"

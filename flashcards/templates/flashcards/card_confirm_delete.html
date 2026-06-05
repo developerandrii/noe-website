@@ -1,12 +1,6 @@
 <h1>Delete Card</h1>
 
-<p>Are you sure you want to delete 
-    {% if card.front|length > 10 %}
-        "{{ card.front|slice:"10" }}"...
-    {% else %}
-        "{{ card.front }}"
-    {% endif %}
-</p>
+<p>Are you sure you want to delete "{{ card.front|truncatechars:15 }}"</p>
 
 <form method="post">
     {% csrf_token %}

@@ -1,15 +1,16 @@
 <h1>My Decks</h1>
-
-<a href="{% url 'deck-create' %}"> Add deck</a>
+<p>
+    <a href="{% url 'deck-create' %}">+ New Daeck</a>
+</p>
 
 {% if decks %}
-<ul>
+<div class="deck-grid">
     {% for deck in decks %}
-        <li>
+        <div class="deck-tile">
             <a href="{% url 'deck-detail' deck.pk %}">{{ deck.name }}</a>
-        </li>
+        </div>
     {% endfor %}
-</ul>
+</div>
 {% else %}
 <p>No decks yet.</p>
 {% endif %}

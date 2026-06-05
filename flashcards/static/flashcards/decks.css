@@ -20,4 +20,5 @@ body {
 .deck-tile {
     padding: 1rem;
     border: 1px solid #ddd;
+    min-height: 230px;
 }

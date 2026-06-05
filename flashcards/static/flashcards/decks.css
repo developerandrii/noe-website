@@ -14,3 +14,9 @@ body {
     display: grid;
     gap: 1rem;
 }
+
+
+.deck-tile {
+    padding: 1rem;
+    border: 1px solid #ddd;
+}

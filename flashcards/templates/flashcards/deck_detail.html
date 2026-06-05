@@ -10,7 +10,11 @@
 
 <ul>
     {% for card in deck.cards.all %}
-        <li>{{ card.front }}</li>
+        <li>
+            <span>{{ card.front }}</span>
+            <br>
+            <a href="{% url 'card-update' card.pk %}">Edit</a>
+        </li>
     {% empty %}
         <li>No cards yet.</li>
     {% endfor %}

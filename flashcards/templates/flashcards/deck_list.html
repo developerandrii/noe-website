@@ -1,7 +1,11 @@
+{% extends 'base.html' %}
 {% load static %}
 
+{% block stylesheets %}
 <link rel="stylesheet" href="{% static 'flashcards/decks.css' %}">
+{% endblock %}
 
+{% block main %}
 <h1>My Decks</h1>
 <p>
     <a href="{% url 'deck-create' %}">+ New Deck</a>
@@ -18,3 +22,4 @@
 {% else %}
 <p>No decks yet.</p>
 {% endif %}
+{% endblock %}

@@ -14,9 +14,12 @@
 {% if decks %}
 <div class="deck-grid">
     {% for deck in decks %}
-        <div class="deck-tile">
-            <a href="{% url 'deck-detail' deck.pk %}">{{ deck.name }}</a>
-        </div>
+        <a 
+        class="deck-tile" 
+        href="{% url 'deck-detail' deck.pk %}"
+        >
+        {{ deck.name }}
+        </a>
     {% endfor %}
 </div>
 {% else %}

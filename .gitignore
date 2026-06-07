@@ -21,3 +21,6 @@ staticfiles/
 # IDE files
 .vscode/
 .idea/
+
+# Local planning
+ROADMAP.md

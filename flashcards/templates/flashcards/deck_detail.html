@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'flashcards/deck_detail.css' %}">
+{% endblock %}
 
 {% block main %}
 <h1>{{ deck.name }}</h1>

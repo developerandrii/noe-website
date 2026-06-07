@@ -1,6 +1,6 @@
 .deck-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 160px 160px;
     gap: 1rem;
 }
 

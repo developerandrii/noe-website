@@ -16,9 +16,9 @@
 
 <h2>Cards</h2>
 
-<ul>
+<ul class="card-list">
     {% for card in deck.cards.all %}
-        <li>
+        <li class="card-tile">
             <span>{{ card.front }}</span>
             <br>
             <a href="{% url 'card-update' card.pk %}">Edit</a>

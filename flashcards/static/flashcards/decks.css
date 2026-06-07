@@ -19,3 +19,11 @@
     background-color: white;
     text-decoration: none;
 }
+
+.deck-tile__name {
+    font-size: 1.1rem;
+}
+
+.deck-tile__card-count {
+    font-size: .9rem;
+}

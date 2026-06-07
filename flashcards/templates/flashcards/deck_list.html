@@ -18,8 +18,8 @@
         class="deck-tile" 
         href="{% url 'deck-detail' deck.pk %}"
         >
-        <span>{{ deck.name }}</span>
-        <span>{{ deck.cards.count }} cards</span>
+        <span class="deck-tile__name">{{ deck.name }}</span>
+        <span class="deck-tile__card-count">{{ deck.cards.count }} cards</span>
         </a>
     {% endfor %}
 </div>

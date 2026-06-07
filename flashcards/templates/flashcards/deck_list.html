@@ -7,11 +7,7 @@
 
 {% block main %}
 <h1>My Decks</h1>
-<p>
-    <a href="{% url 'deck-create' %}">+ New Deck</a>
-</p>
 
-{% if decks %}
 <div class="deck-grid">
     {% for deck in decks %}
         <a 
@@ -22,8 +18,12 @@
         <span class="deck-tile__card-count">{{ deck.cards.count }} cards</span>
         </a>
     {% endfor %}
+        <a 
+            class="deck-tile deck-tile--create" 
+            href="{% url 'deck-create' %}"
+        >
+            <span class="deck-tile__plus">+</span>
+            <span class="deck-tile__create-text">New Deck</span>
+        </a>
 </div>
-{% else %}
-<p>No decks yet.</p>
-{% endif %}
 {% endblock %}

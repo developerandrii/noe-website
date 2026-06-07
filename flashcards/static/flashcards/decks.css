@@ -28,3 +28,26 @@
 .deck-tile__card-count {
     font-size: .9rem;
 }
+
+
+.deck-tile--create {
+    justify-content: center;
+    gap: 1rem;
+}
+
+.deck-tile__plus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 48px;
+    height: 48px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+
+    font-size: 2rem;
+}
+
+.deck-tile__create-text {
+    font-size: .9rem;
+}

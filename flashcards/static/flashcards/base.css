@@ -8,3 +8,7 @@
 body {
     background-color: hsl(0, 0%, 97%);
 }
+
+main {
+    padding: 10px;
+}

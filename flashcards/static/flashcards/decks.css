@@ -11,5 +11,7 @@
     min-height: 230px;
     padding: 1rem;
     border: 1px solid #ddd;
+    color: inherit;
     background-color: white;
+    text-decoration: none;
 }

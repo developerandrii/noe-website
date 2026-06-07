@@ -8,6 +8,9 @@
 
 
 .deck-tile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     min-height: 230px;
     padding: 1rem;
     border: 1px solid #ddd;

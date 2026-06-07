@@ -19,11 +19,11 @@
 <ul class="card-list">
     {% for card in deck.cards.all %}
         <li class="card-tile">
-            <span>{{ card.front }}</span>
-            <br>
-            <a href="{% url 'card-update' card.pk %}">Edit</a>
-            <br>
-            <a href="{% url 'card-delete' card.pk %}">Delete</a>
+            <p class="card-tile__content">{{ card.front }}</p>
+            <div class="card-tile__actions">
+                <a href="{% url 'card-update' card.pk %}">Edit</a>
+                <a href="{% url 'card-delete' card.pk %}">Delete</a>
+            </div>
         </li>
     {% empty %}
         <li>No cards yet.</li>

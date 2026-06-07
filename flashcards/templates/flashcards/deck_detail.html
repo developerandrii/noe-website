@@ -14,8 +14,6 @@
 <br>
 <a href="{% url 'deck-update' deck.pk %}">Edit Deck</a>
 
-<h2>Cards</h2>
-
 <ul class="card-list">
     {% for card in deck.cards.all %}
         <li class="card-tile">

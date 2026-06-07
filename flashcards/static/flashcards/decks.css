@@ -8,7 +8,8 @@
 
 
 .deck-tile {
+    min-height: 230px;
     padding: 1rem;
     border: 1px solid #ddd;
-    min-height: 230px;
+    background-color: white;
 }

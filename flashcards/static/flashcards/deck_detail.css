@@ -22,6 +22,11 @@
 
 .card-tile__content {
     margin-bottom: .5rem;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 9;
+    -webkit-box-orient: vertical;
 }
 
 

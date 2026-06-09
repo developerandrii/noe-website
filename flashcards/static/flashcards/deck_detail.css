@@ -1,3 +1,16 @@
+.deck-title {
+    margin-bottom: .25rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+
+.deck-created-at {
+    text-align: center;
+    font-size: .9rem;
+}
+
+
 .deck-actions {
     display: flex;
     justify-content: center;

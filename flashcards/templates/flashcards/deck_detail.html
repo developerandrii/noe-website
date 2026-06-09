@@ -6,9 +6,9 @@
 {% endblock %}
 
 {% block main %}
-<h1>{{ deck.name }}</h1>
+<h1 class="deck-title">{{ deck.name }}</h1>
 
-<p>Created: {{ deck.created_at }}</p>
+<p class="deck-created-at">Created: {{ deck.created_at }}</p>
 
 <div class="deck-actions">
     <a href="{% url 'card-create' deck.pk %}">Add Card</a>

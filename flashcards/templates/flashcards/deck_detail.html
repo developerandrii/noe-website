@@ -10,9 +10,10 @@
 
 <p>Created: {{ deck.created_at }}</p>
 
-<a href="{% url 'card-create' deck.pk %}">Add Card</a>
-<br>
-<a href="{% url 'deck-update' deck.pk %}">Edit Deck</a>
+<div class="deck-actions">
+    <a href="{% url 'card-create' deck.pk %}">Add Card</a>
+    <a href="{% url 'deck-update' deck.pk %}">Edit Deck</a>
+</div>
 
 <ul class="card-list">
     {% for card in deck.cards.all %}

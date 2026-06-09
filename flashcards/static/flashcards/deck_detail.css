@@ -1,3 +1,21 @@
+.deck-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+
+.deck-actions a {
+    padding: .5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    color: inherit;
+    background-color: white;
+    text-decoration: none;
+}
+
+
 .card-list {
     display: grid;
     grid-template-columns: 160px 160px;

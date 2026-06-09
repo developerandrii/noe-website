@@ -25,7 +25,12 @@
             </div>
         </li>
     {% empty %}
-        <li>No cards yet.</li>
+        <li class="card-tile card-tile--create">
+            <a href="{% url 'card-create' deck.pk %}" class="card-tile__create-link">
+                <span class="card-tile__plus">+</span>
+                <span class="card-tile__create-text">Add first card</span>
+            </a>
+        </li>
     {% endfor %}
 </ul>
 {% endblock %}

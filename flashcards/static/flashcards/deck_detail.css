@@ -71,3 +71,36 @@
     color: inherit;
     text-decoration: none;
 }
+
+
+.card-tile--create {
+    justify-content: center;
+    align-items: center;
+}
+
+
+.card-tile__create-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: inherit;
+    text-decoration: none;
+}
+
+
+.card-tile__plus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    font-size: 2rem;
+}
+
+
+.card-tile__create-text {
+    font-size: .9rem;
+}

@@ -17,8 +17,10 @@
         <p class="card-detail__content">{{ card.back }}</p>
     </section>
 
-    <a class="card-detail__back-link" href="{% url 'deck-detail' card.deck.pk %}">
-        Back to deck
-    </a>
+    <div class="card-detail__actions">
+        <a href="{% url 'deck-detail' card.deck.pk %}">Back to deck</a>
+        <a href="{% url 'card-update' card.pk %}">Edit card</a>
+        <a href="{% url 'card-delete' card.pk %}">Delete card</a>
+    </div>
 </article>
 {% endblock %}

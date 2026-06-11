@@ -31,8 +31,18 @@
 }
 
 
-.card-detail__back-link {
-    display: inline-block;
+.card-detail__actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+
+.card-detail__actions a {
+    padding: .5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
     color: inherit;
+    background-color: white;
     text-decoration: none;
 }

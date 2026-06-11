@@ -84,6 +84,16 @@ class DeleteDeckView(LoginRequiredMixin, DeleteView):
     
 
 
+class CardDetailView(LoginRequiredMixin, DetailView):
+    model = Card
+    template_name = "flashcards/card_detail.html"
+    context_object_name = "card"
+
+    def get_queryset(self):
+        return Card.objects.filter(deck__owner=self.request.user)
+
+
+
 class CardUpdateView(LoginRequiredMixin, UpdateView):
     model = Card
     fields = ["front", "back"]

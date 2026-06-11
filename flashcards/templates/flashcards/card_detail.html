@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<h1>{{ card.front }}</h1>
+
+<p>{{ card.back }}</p>
+
+<a href="{% url 'deck-detail' card.deck.pk %}">Back to deck</a>
+{% endblock %}

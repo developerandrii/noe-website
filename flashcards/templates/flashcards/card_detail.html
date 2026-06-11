@@ -6,9 +6,19 @@
 {% endblock %}
 
 {% block main %}
-<h1>{{ card.front }}</h1>
+<article class="card-detail">
+    <section class="card-detail__section">
+        <h1 class="card-detail__label">Front</h1>
+        <p class="card-detail__content">{{ card.front }}</p>
+    </section>
 
-<p>{{ card.back }}</p>
+    <section class="card-detail__section">
+        <h2 class="card-detail__label">Back</h2>
+        <p class="card-detail__content">{{ card.back }}</p>
+    </section>
 
-<a href="{% url 'deck-detail' card.deck.pk %}">Back to deck</a>
+    <a class="card-detail__back-link" href="{% url 'deck-detail' card.deck.pk %}">
+        Back to deck
+    </a>
+</article>
 {% endblock %}

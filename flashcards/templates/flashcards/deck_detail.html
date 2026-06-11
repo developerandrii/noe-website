@@ -20,6 +20,7 @@
         <li class="card-tile">
             <p class="card-tile__content">{{ card.front }}</p>
             <div class="card-tile__actions">
+                <a href="{% url 'card-detail' card.pk %}">View</a>
                 <a href="{% url 'card-update' card.pk %}">Edit</a>
                 <a href="{% url 'card-delete' card.pk %}">Delete</a>
             </div>

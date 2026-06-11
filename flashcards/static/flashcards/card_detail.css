@@ -1,0 +1,38 @@
+.card-detail {
+    max-width: 680px;
+    margin: auto;
+}
+
+
+.card-detail__section {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 420px;
+    margin: auto;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: white;
+}
+
+
+.card-detail__label {
+    margin-bottom: .75rem;
+    font-size: 1rem;
+}
+
+
+.card-detail__content {
+    overflow-wrap: break-word;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+
+.card-detail__back-link {
+    display: inline-block;
+    color: inherit;
+    text-decoration: none;
+}

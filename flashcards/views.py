@@ -84,6 +84,21 @@ class DeleteDeckView(LoginRequiredMixin, DeleteView):
     
 
 
+class DeckStudyView(LoginRequiredMixin, DetailView):
+    model = Deck
+    template_name = "flashcards/deck_study.html"
+    context_object_name = "deck"
+
+    def get_queryset(self):
+        return Deck.objects.filter(owner=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["card"] = self.object.cards.first()
+        return context
+    
+
+
 class CardDetailView(LoginRequiredMixin, DetailView):
     model = Card
     template_name = "flashcards/card_detail.html"

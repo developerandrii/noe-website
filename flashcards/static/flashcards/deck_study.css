@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'flashcards/deck_study.css' %}">
+{% endblock %}

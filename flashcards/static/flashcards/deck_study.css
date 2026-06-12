@@ -1,6 +1,63 @@
-{% extends 'base.html' %}
-{% load static %}
+.deck-title {
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
 
-{% block stylesheets %}
-<link rel="stylesheet" href="{% static 'flashcards/deck_study.css' %}">
-{% endblock %}
+
+.card-tile {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 420px;
+    margin: auto;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: white;
+}
+
+
+.card-tile__content {
+    overflow-y: auto;
+    overflow-wrap: break-word;
+    scrollbar-width: none;
+}
+
+
+.card-guess {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    width: 300px;
+    margin: auto;
+    margin-bottom: 1rem;
+}
+
+
+.card-guess__input {
+    padding: .5rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font: inherit;
+    resize: vertical;
+}
+
+
+.card-guess__check-button {
+    padding: .5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: white;
+    font: inherit;
+}
+
+
+.deck-back-link {
+    display: block;
+    width: fit-content;
+    margin: auto;
+    color: inherit;
+    text-decoration: none;
+}

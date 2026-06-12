@@ -6,16 +6,36 @@
 {% endblock %}
 
 {% block main %}
-<h1>Study {{ deck.name }}</h1>
+<h1 class="deck-title">Study {{ deck.name }}</h1>
 
 {% if card %}
-    <article>
-        <p>{{ card.front }}</p>
+    <article class="card-tile" data-card-tile>
+        <p class="card-tile__content" data-card-tile-content>{{ card.front }}</p>
     </article>
+
+    <form class="card-guess" data-card-guess>
+        <label class="card-guess__label" for="card-guess-input">
+            Your answer
+        </label>
+
+        <textarea
+            class="card-guess__input"
+            id="card-guess-input"
+            rows="4"
+            data-card-guess-input
+        ></textarea>
+
+        <button
+            class="card-guess__check-button"
+            type="button"
+            data-card-guess-check
+        >
+            Check
+        </button>
+    </form>
 {% else %}
     <p>This deck has no cards yet.</p>
     <a href="{% url 'card-create' deck.pk %}">Add first card</a>
 {% endif %}
-
-<a href="{% url 'deck-detail' deck.pk %}">Back to deck</a>
+    <a class="deck-back-link" href="{% url 'deck-detail' deck.pk %}">Back to deck</a>
 {% endblock %}

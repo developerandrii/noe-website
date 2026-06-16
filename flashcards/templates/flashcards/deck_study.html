@@ -40,7 +40,10 @@
     <p>This deck has no cards yet.</p>
     <a href="{% url 'card-create' deck.pk %}">Add first card</a>
 {% endif %}
-    <a class="deck-back-link" href="{% url 'deck-detail' deck.pk %}">Back to deck</a>
+    <div class="deck-study__actions">
+        <a class="deck-back-link" href="{% url 'deck-detail' deck.pk %}">Back to deck</a>
+        <a href="{% url 'deck-study' deck.pk %}">Next card</a>
+    </div>
 {% endblock %}
 
 

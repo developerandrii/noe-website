@@ -33,9 +33,15 @@
             Check
         </button>
     </form>
+    <p hidden data-card-correct-answer>{{ card.back }}</p>
 {% else %}
     <p>This deck has no cards yet.</p>
     <a href="{% url 'card-create' deck.pk %}">Add first card</a>
 {% endif %}
     <a class="deck-back-link" href="{% url 'deck-detail' deck.pk %}">Back to deck</a>
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{% static 'flashcards/deck_study.js' %}"></script>
 {% endblock %}

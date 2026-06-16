@@ -94,8 +94,8 @@ class DeckStudyView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # get a random card from the deck belonging to the user 
-        context["card"] = self.object.cards.order_by("?").first()
+        # get one random unlearned card from the deck. 
+        context["card"] = self.object.cards.filter(is_learned=False).order_by("?").first()
         return context
     
 

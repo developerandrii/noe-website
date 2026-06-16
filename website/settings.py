@@ -130,4 +130,11 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 
-LOGIN_REDIRECT_URL = "/"
+# Redirect anonymous users here when LoginRequiredMixin blocks a page.
+LOGIN_URL = "login"
+
+# After successful login, send users to the deck list page.
+LOGIN_REDIRECT_URL = "deck-list"
+
+# After logout, send users back to login page.
+LOGOUT_REDIRECT_URL = "login"

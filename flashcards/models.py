@@ -25,5 +25,10 @@ class Card(models.Model):
     # Creation timestamp
     created_at = models.DateTimeField(auto_now_add=True,)
 
+    correct_streak = models.PositiveIntegerField(default=0)
+    target_streak = models.PositiveIntegerField(default=3)
+    is_learned = models.BooleanField(default=False)
+    learned_at = models.DateTimeField(null=True, blank=True)
+
     def __str__(self):
         return self.front[:50]

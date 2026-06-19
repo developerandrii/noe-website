@@ -11,6 +11,9 @@
 {% if card %}
     <article class="card-tile" data-card-tile>
         <p class="card-tile__content" data-card-tile-content>{{ card.front }}</p>
+        <p class="card-tile__progress">
+            {{ card.correct_streak }} / {{ card.target_streak }}
+        </p>
     </article>
 
     <div class="card-comparison" data-card-comparison hidden></div>

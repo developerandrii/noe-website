@@ -26,6 +26,14 @@
 }
 
 
+.card-tile__progress {
+    margin-top: auto;
+    padding-top: .75rem;
+    font-size: .9rem;
+    text-align: center;
+}
+
+
 .card-guess {
     display: flex;
     flex-direction: column;

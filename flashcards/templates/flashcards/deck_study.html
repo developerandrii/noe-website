@@ -11,12 +11,36 @@
 {% if card %}
     <article class="card-tile" data-card-tile>
         <p class="card-tile__content" data-card-tile-content>{{ card.front }}</p>
-        <p class="card-tile__progress">
+        <p class="card-tile__progress" id="card-study-progress">
             {{ card.correct_streak }} / {{ card.target_streak }}
         </p>
     </article>
 
-    <div class="card-comparison" data-card-comparison hidden></div>
+    <div class="card-comparison" data-card-comparison hidden>
+        <h2 class="card-comparison__title">Comparison</h2>
+
+        <div data-card-comparison-body></div>
+
+        <div class="card-comparison__actions" data-card-comparison-actions>
+            <form
+                hx-post="{% url 'card-study-result' card.pk %}"
+                hx-target="#card-study-progress"
+                hx-swap="outerHTML"
+            >
+                <input type="hidden" name="result" value="correct">
+                <button type="submit" data-card-study-result-button>I got it</button>
+            </form>
+
+            <form
+                hx-post="{% url 'card-study-result' card.pk %}"
+                hx-target="#card-study-progress"
+                hx-swap="outerHTML"
+            >
+                <input type="hidden" name="result" value="incorrect">
+                <button type="submit" data-card-study-result-button>I missed it</button>
+            </form>
+        </div>
+    </div>
 
     <form class="card-guess" data-card-guess>
         <label class="card-guess__label" for="card-guess-input">

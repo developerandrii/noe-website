@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils import timezone
@@ -10,6 +10,15 @@ from django.views import View
 from .models import Deck, Card
 
 
+# ----- AUTHENTICATIONS VIEWS -----
+class RegisterView(CreateView):
+    form_class = UserCreationForm
+    template_name = "registration/register.html"
+    success_url = reverse_lazy("login")
+
+
+
+# ----- DECK VIEWS -----
 class DeckListView(LoginRequiredMixin, ListView):
     model = Deck
     template_name = "flashcards/deck_list.html"
@@ -42,44 +51,28 @@ class DeckDetailView(LoginRequiredMixin, DetailView):
     
 
 
-class CardStudyResultView(LoginRequiredMixin, View):
-    def post(self, request, *args, **kwargs):
-        card = get_object_or_404(
-            Card,
-            pk=self.kwargs["pk"],
-            deck__owner=self.request.user,
-        )
+class UpdateDeckView(LoginRequiredMixin, UpdateView):
+    model = Deck
+    fields = ["name"]
+    template_name = "flashcards/deck_form.html"
+    success_url = reverse_lazy("deck-list")
 
-        study_result = request.POST.get("result")
-
-        if study_result == "correct":
-            card.correct_streak += 1
-
-            if card.correct_streak >= card.target_streak:
-                card.is_learned = True
-                card.learned_at = timezone.now()
-
-        elif study_result == "incorrect":
-            card.correct_streak = 0
-            card.is_learned = False
-            card.learned_at = None
-
-        card.save(
-            update_fields=[
-                "correct_streak",
-                "is_learned",
-                "learned_at",
-            ]
-        )
-
-        return render(
-            request,
-            "flashcards/partials/card_study_progress.html",
-            {"card": card},
-        )
+    def get_queryset(self):
+        return Deck.objects.filter(owner=self.request.user)
 
 
 
+class DeleteDeckView(LoginRequiredMixin, DeleteView):
+    model = Deck
+    template_name = "flashcards/deck_confirm_delete.html"
+    success_url = reverse_lazy("deck-list")
+
+    def get_queryset(self):
+        return Deck.objects.filter(owner=self.request.user)
+
+
+
+# ----- CARD VIEWS -----
 class CreateCardView(LoginRequiredMixin, CreateView):
     model = Card
     fields = ["front", "back"]
@@ -101,43 +94,6 @@ class CreateCardView(LoginRequiredMixin, CreateView):
             kwargs={"pk": self.object.deck.pk},
         )
 
-
-
-class UpdateDeckView(LoginRequiredMixin, UpdateView):
-    model = Deck
-    fields = ["name"]
-    template_name = "flashcards/deck_form.html"
-    success_url = reverse_lazy("deck-list")
-
-    def get_queryset(self):
-        return Deck.objects.filter(owner=self.request.user)
-
-
-
-class DeleteDeckView(LoginRequiredMixin, DeleteView):
-    model = Deck
-    template_name = "flashcards/deck_confirm_delete.html"
-    success_url = reverse_lazy("deck-list")
-
-    def get_queryset(self):
-        return Deck.objects.filter(owner=self.request.user)
-    
-
-
-class DeckStudyView(LoginRequiredMixin, DetailView):
-    model = Deck
-    template_name = "flashcards/deck_study.html"
-    context_object_name = "deck"
-
-    def get_queryset(self):
-        return Deck.objects.filter(owner=self.request.user)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        # get one random unlearned card from the deck. 
-        context["card"] = self.object.cards.filter(is_learned=False).order_by("?").first()
-        return context
-    
 
 
 class CardDetailView(LoginRequiredMixin, DetailView):
@@ -181,8 +137,60 @@ class CardDeleteView(LoginRequiredMixin, DeleteView):
 
 
 
-class RegisterView(CreateView):
-    form_class = UserCreationForm
-    template_name = "registration/register.html"
-    success_url = reverse_lazy("login")
+# ---- STUDY VIEWS -----
+class DeckStudyView(LoginRequiredMixin, DetailView):
+    model = Deck
+    template_name = "flashcards/deck_study.html"
+    context_object_name = "deck"
+
+    def get_queryset(self):
+        return Deck.objects.filter(owner=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # get one random unlearned card from the deck. 
+        context["card"] = self.object.cards.filter(is_learned=False).order_by("?").first()
+        return context
+
+
+
+class CardStudyResultView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        card = get_object_or_404(
+            Card,
+            pk=self.kwargs["pk"],
+            deck__owner=self.request.user,
+        )
+
+        study_result = request.POST.get("result")
+
+        if study_result == "correct":
+            card.correct_streak += 1
+
+            if card.correct_streak >= card.target_streak:
+                card.is_learned = True
+                card.learned_at = timezone.now()
+
+        elif study_result == "incorrect":
+            card.correct_streak = 0
+            card.is_learned = False
+            card.learned_at = None
+
+        card.save(
+            update_fields=[
+                "correct_streak",
+                "is_learned",
+                "learned_at",
+            ]
+        )
+
+        return render(
+            request,
+            "flashcards/partials/card_study_progress.html",
+            {"card": card},
+        )
+
+
+
+
 

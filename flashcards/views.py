@@ -1,9 +1,11 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.utils import timezone
+from django.views import View
 
 from .models import Deck, Card
 
@@ -37,6 +39,44 @@ class DeckDetailView(LoginRequiredMixin, DetailView):
 
     def get_queryset(self):
         return Deck.objects.filter(owner=self.request.user)
+    
+
+
+class CardStudyResultView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        card = get_object_or_404(
+            Card,
+            pk=self.kwargs["pk"],
+            deck__owner=self.request.user,
+        )
+
+        study_result = request.POST.get("result")
+
+        if study_result == "correct":
+            card.correct_streak += 1
+
+            if card.correct_streak >= card.target_streak:
+                card.is_learned = True
+                card.learned_at = timezone.now()
+
+        elif study_result == "incorrect":
+            card.correct_streak = 0
+            card.is_learned = False
+            card.learned_at = None
+
+        card.save(
+            update_fields=[
+                "correct_streak",
+                "is_learned",
+                "learned_at",
+            ]
+        )
+
+        return render(
+            request,
+            "flashcards/partials/card_study_progress.html",
+            {"card": card},
+        )
 
 
 

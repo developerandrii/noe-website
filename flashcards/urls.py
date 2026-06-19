@@ -13,4 +13,5 @@ urlpatterns = [
     path("cards/<int:pk>/", views.CardDetailView.as_view(), name="card-detail"),
     path("cards/<int:pk>/edit/", views.CardUpdateView.as_view(), name="card-update"),
     path("cards/<int:pk>/delete/", views.CardDeleteView.as_view(), name="card-delete"),
+    path("cards/<int:pk>/study-result/", views.CardStudyResultView.as_view(), name="card-study-result"),
 ]

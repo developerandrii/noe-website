@@ -148,8 +148,20 @@ class DeckStudyView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # get one random unlearned card from the deck. 
-        context["card"] = self.object.cards.filter(is_learned=False).order_by("?").first()
+
+        cards = self.object.cards.all()
+
+        # The deck may have cards, even if all of them are already learned.
+        context["has_cards"] = cards.exists()
+
+        # Pick one random unlearned card from this deck.
+        context["card"] = (
+            cards
+            .filter(is_learned=False)
+            .order_by("?")
+            .first()
+        )
+
         return context
 
 

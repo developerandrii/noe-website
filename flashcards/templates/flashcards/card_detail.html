@@ -7,6 +7,32 @@
 
 {% block main %}
 <article class="card-detail">
+    <section class="card-detail__info">
+        <h2 class="card-detail__label">Card Info</h2>
+        <ul class="card-detail__stats">
+            <li class="card-detail__stat">
+                <p class="card-detail__stat-label">Current streak:</p>
+                <p class="card-detail__stat-value">{{ card.correct_streak }}</p>
+            </li>
+            
+            <li class="card-detail__stat">
+                <p class="card-detail__stat-label">Target streak:</p>
+                <p class="card-detail__stat-value">{{ card.target_streak }}</p>
+            </li>
+
+            <li class="card-detail__stat">
+                <p class="card-detail__stat-label">Status:</p>
+                <p class="card-detail__stat-value">
+                    {% if card.is_learned %}
+                        Learned
+                    {% else %}
+                        Learning
+                    {% endif %}
+                </p>
+            </li>
+        </ul>
+    </section>
+
     <section class="card-detail__section">
         <h1 class="card-detail__label">Front</h1>
         <p class="card-detail__content">{{ card.front }}</p>

@@ -1,4 +1,3 @@
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404, render
@@ -9,12 +8,6 @@ from django.views import View
 
 from .models import Deck, Card
 
-
-# ----- AUTHENTICATIONS VIEWS -----
-class RegisterView(CreateView):
-    form_class = UserCreationForm
-    template_name = "registration/register.html"
-    success_url = reverse_lazy("login")
 
 
 

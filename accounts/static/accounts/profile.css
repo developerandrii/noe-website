@@ -1,0 +1,87 @@
+.profile-title {
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.profile-panel {
+    width: 300px;
+    margin: auto;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.profile-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .75rem;
+    text-align: center;
+}
+
+.profile-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.profile-username {
+    font-size: 1.1rem;
+}
+
+.profile-email {
+    font-size: .9rem;
+}
+
+.profile-logout-button {
+    padding: .5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: white;
+    font: inherit;
+    cursor: pointer;
+}
+
+.profile-section-title {
+    margin-bottom: .75rem;
+    font-size: 1rem;
+}
+
+.profile-stats {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.profile-stat {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.profile-stat-value {
+    text-align: right;
+}
+
+.profile-actions {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-actions a {
+    padding: .5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    color: inherit;
+    background-color: white;
+    text-decoration: none;
+}

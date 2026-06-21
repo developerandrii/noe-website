@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'accounts/profile.css' %}">
+{% endblock %}
+
+{% block main %}
+<h1 class="profile-title">Profile</h1>
+
+<section class="profile-panel profile-summary">
+    <div class="profile-avatar">
+        {{ user.username|slice:":1"|upper }}
+    </div>
+
+    <div class="profile-user-info">
+        <h2 class="profile-username">{{ user.username }}</h2>
+
+        <p class="profile-email">
+            {% if user.email %}
+                {{ user.email }}
+            {% else %}
+                No email added
+            {% endif %}
+        </p>
+    </div>
+
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button class="profile-logout-button" type="submit">
+            Log out
+        </button>
+    </form>
+</section>
+
+<section class="profile-panel">
+    <h2 class="profile-section-title">Learning stats</h2>
+
+    <dl class="profile-stats">
+        <div class="profile-stat">
+            <dt class="profile-stat-label">Decks</dt>
+            <dd class="profile-stat-value">{{ deck_count }}</dd>
+        </div>
+
+        <div class="profile-stat">
+            <dt class="profile-stat-label">Cards</dt>
+            <dd class="profile-stat-value">{{ card_count }}</dd>
+        </div>
+
+        <div class="profile-stat">
+            <dt class="profile-stat-label">Learned cards</dt>
+            <dd class="profile-stat-value">{{ learned_card_count }}</dd>
+        </div>
+    </dl>
+</section>
+
+<div class="profile-actions">
+    <a href="{% url 'deck-list' %}">Back to decks</a>
+</div>
+{% endblock %}

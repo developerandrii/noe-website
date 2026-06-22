@@ -1,13 +1,25 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404, render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils import timezone
 from django.views import View
 
 from .models import Deck, Card
 
+
+
+# ----- HOME VIEW -----
+class HomeView(TemplateView):
+    """
+    Public landing page for the project.
+
+    Logged-out users can use it to understand what Noe is.
+    Logged-in users can use it as a simple starting point.
+    """
+
+    template_name = "flashcards/home.html"
 
 
 

@@ -71,17 +71,3 @@
 .profile-stat-value {
     text-align: right;
 }
-
-.profile-actions {
-    display: flex;
-    justify-content: center;
-}
-
-.profile-actions a {
-    padding: .5rem 1rem;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    color: inherit;
-    background-color: white;
-    text-decoration: none;
-}

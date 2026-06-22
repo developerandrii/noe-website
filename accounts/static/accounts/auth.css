@@ -1,0 +1,53 @@
+.auth-title {
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.auth-form {
+    width: 300px;
+    margin: auto;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.auth-form p {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    margin-bottom: .75rem;
+}
+
+.auth-form .helptext {
+    font-size: .85rem;
+}
+
+.auth-form ul {
+    margin-bottom: .75rem;
+    padding-left: 1.25rem;
+    font-size: .85rem;
+}
+
+.auth-form li {
+    margin-bottom: .25rem;
+}
+
+.auth-form button {
+    width: 100%;
+    padding: .5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: white;
+    font: inherit;
+    cursor: pointer;
+}
+
+.auth-link {
+    display: block;
+    width: fit-content;
+    margin: auto;
+    color: inherit;
+}

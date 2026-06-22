@@ -15,6 +15,21 @@
     <title>{% block title %}Noe{% endblock %}</title>
 </head>
 <body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
+    <header class="site-header">
+        <nav class="site-nav">
+            <a class="site-nav__brand" href="{% url 'deck-list' %}">Noe</a>
+
+            <div class="site-nav__links">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'deck-list' %}">Decks</a>
+                    <a href="{% url 'profile' %}">Profile</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Log in</a>
+                    <a href="{% url 'register' %}">Register</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
     <main>
         {% block main %}
         {% endblock %}
